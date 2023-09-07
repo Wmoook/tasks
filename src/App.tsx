@@ -8,7 +8,12 @@ function App(): JSX.Element {
     };
 
     return (
-        <div className="App">
+        <div className="App" style={{ color: "red" }}>
+            {}
+            <div style={{ border: "1px solid blue", padding: "4px" }}>
+                this will be surrounded by a border and padding.
+            </div>
+            {}
             <header
                 className="App-header"
                 role="banner"
@@ -31,9 +36,9 @@ function App(): JSX.Element {
                             will automatically reload. Hello World
                         </p>
                         <ul role="list">
-                            <li>Item 1</li>
-                            <li>Item 2</li>
-                            <li>Item 3</li>
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
                         </ul>
                         <button
                             className="btn btn-primary"
