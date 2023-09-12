@@ -60,6 +60,10 @@ function App(): JSX.Element {
                             src="https://i.gyazo.com/ee7f8d29a6dda5f4d1e95b21c2402a94.png"
                             alt="picture"
                         />
+                        <p>
+                            Column 2, yes the image is very big but there is a
+                            second column.
+                        </p>
                     </div>
                 </div>
             </div>
