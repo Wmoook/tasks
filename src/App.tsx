@@ -27,7 +27,7 @@ function App(): JSX.Element {
                 <h1>UD CISC275 with React Hooks and TypeScript, Adam Beck</h1>
             </header>
             <hr></hr>
-            {/* <DoubleHalf></DoubleHalf> */}
+            <DoubleHalf></DoubleHalf>
             <hr></hr>
             <ChooseTeam></ChooseTeam>
             <hr></hr>
