@@ -1,13 +1,25 @@
 import React, { useState } from "react";
 
-export function CheckAnswer({
-    expectedAnswer
-}: {
+interface Props {
     expectedAnswer: string;
-}): JSX.Element {
+}
+
+export const CheckAnswer: React.FC<Props> = ({ expectedAnswer }) => {
+    const [userAnswer, setUserAnswer] = useState<string>("");
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUserAnswer(event.target.value);
+    };
+
     return (
         <div>
-            <h3>Check Answer</h3>
+            <input
+                type="text"
+                value={userAnswer}
+                onChange={handleInputChange}
+                role="textbox"
+            />
+            {userAnswer === expectedAnswer ? "✔️" : "❌"}
         </div>
     );
-}
+};
