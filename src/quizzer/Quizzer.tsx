@@ -14,7 +14,6 @@ type PartialQuiz = Omit<Quiz, "questionList"> & {
 const isQuestionType = (type: any): type is QuestionType => {
     return ["multiple_choice_question", "short_answer_question"].includes(type);
 };
-
 const QUIZZES = (sample as PartialQuiz[]).map(
     (quiz: PartialQuiz): Quiz => ({
         ...quiz,
@@ -24,8 +23,8 @@ const QUIZZES = (sample as PartialQuiz[]).map(
                 : "short_answer_question";
             return {
                 ...q,
-                name: q.name || "",
-                submission: "",
+                name: q.name || "", // If 'name' is optional in PartialQuestion, provide a default value.
+                submission: "", // Add missing submission field
                 type: type
             };
         })
