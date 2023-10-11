@@ -45,8 +45,8 @@ export const QuestionEdit: React.FC<Props> = ({
         editQuestion(question.id, {
             ...question,
             type: "multiple_choice_question",
-            expected: "",
-            options: Array(newNum).fill("")
+            expected: "Example Answer",
+            options: Array(newNum).fill("Example Answer")
         });
     };
 
@@ -55,8 +55,8 @@ export const QuestionEdit: React.FC<Props> = ({
         editQuestion(question.id, {
             ...question,
             type: "multiple_choice_question",
-            expected: "",
-            options: Array(3).fill("")
+            expected: "Example Answer",
+            options: Array(3).fill("Example Answer")
         });
     };
 
