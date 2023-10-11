@@ -16,14 +16,15 @@ const isQuestionType = (type: any): type is QuestionType => {
 };
 
 const QUIZZES = (sample as PartialQuiz[]).map(
-    (quiz): Quiz => ({
+    (quiz: PartialQuiz): Quiz => ({
         ...quiz,
-        questionList: quiz.questionList.map((q): Question => {
+        questionList: quiz.questionList.map((q: PartialQuestion): Question => {
             const type = isQuestionType(q.type)
                 ? q.type
                 : "short_answer_question";
             return {
                 ...q,
+                name: q.name || "",
                 submission: "",
                 type: type
             };
