@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import { Quiz } from "../interfaces/quiz";
 import { QuizCard } from "./QuizCard";
@@ -22,8 +22,6 @@ export const QuizList: React.FC<QuizListProps> = ({
     displayId,
     setDisplayId
 }) => {
-    const [localDisplayId, setLocalDisplayId] = useState<null | number>(null);
-
     const handleQuizView = (id: number) => {
         setDisplayId(id);
     };
@@ -31,6 +29,8 @@ export const QuizList: React.FC<QuizListProps> = ({
     const resetQuizView = () => {
         setDisplayId(null);
     };
+
+    const selectedQuiz = quizzes.find((quiz) => quiz.id === displayId) || null;
 
     return (
         <div className="quiz_list">
@@ -48,12 +48,14 @@ export const QuizList: React.FC<QuizListProps> = ({
                     </Button>
                 </>
             ) : (
-                <QuizView
-                    quiz={quizzes.find((quiz) => quiz.id === displayId)!}
-                    editQuiz={editQuiz}
-                    deleteQuiz={deleteQuiz}
-                    resetView={resetQuizView}
-                />
+                selectedQuiz && (
+                    <QuizView
+                        quiz={selectedQuiz}
+                        editQuiz={editQuiz}
+                        deleteQuiz={deleteQuiz}
+                        resetView={resetQuizView}
+                    />
+                )
             )}
         </div>
     );
