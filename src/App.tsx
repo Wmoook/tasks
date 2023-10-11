@@ -1,69 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-import { ChangeType } from "./components/ChangeType";
-import { RevealAnswer } from "./components/RevealAnswer";
-import { StartAttempt } from "./components/StartAttempt";
-import { TwoDice } from "./components/TwoDice";
-import { CycleHoliday } from "./components/CycleHoliday";
-import { Counter } from "./components/Counter";
-import { DoubleHalf } from "./bad-components/DoubleHalf";
-import { ColoredBox } from "./bad-components/ColoredBox";
-import { ShoveBox } from "./bad-components/ShoveBox";
-import { ChooseTeam } from "./bad-components/ChooseTeam";
-import { CheckAnswer } from "./form-components/CheckAnswer";
-import { GiveAttempts } from "./form-components/GiveAttempts";
-import { EditMode } from "./form-components/EditMode";
-import { MultipleChoiceQuestion } from "./form-components/MultipleChoiceQuestion";
-import { ChangeColor } from "./form-components/ChangeColor";
+import { Quizzer } from "./quizzer/Quizzer";
+import { ShowHideTasks } from "./ShowHideTasks";
+import { Button } from "react-bootstrap";
 
 function App(): JSX.Element {
+    const [showQuizzer, setShowQuizzer] = useState<boolean>(true);
+
     return (
-        <div className="App" style={{ color: "red" }}>
-            {}
-            <div style={{ border: "1px solid blue", padding: "4px" }}>
-                this will be surrounded by a border and padding.
-            </div>
-            {}
-            <header
-                className="App-header"
-                role="banner"
-                style={{ backgroundColor: "blue" }}
-            >
-                <h1>UD CISC275 with React Hooks and TypeScript, Adam Beck</h1>
+        <div className="App">
+            <header className="App-header">
+                UD CISC275 with React Hooks and TypeScript
+                <Button
+                    onClick={() => {
+                        setShowQuizzer(!showQuizzer);
+                    }}
+                >
+                    {showQuizzer ? "Tasks" : "Quizzer"}
+                </Button>
             </header>
-            <hr></hr>
-            <CheckAnswer expectedAnswer="42"></CheckAnswer>
-            <hr></hr>
-            <GiveAttempts></GiveAttempts>
-            <hr></hr>
-            <EditMode></EditMode>
-            <hr></hr>
-            <ChangeColor></ChangeColor>
-            <hr></hr>
-            <MultipleChoiceQuestion
-                options={["a", "b", "c"]}
-                expectedAnswer="b"
-            ></MultipleChoiceQuestion>
-            <hr></hr>
-            <DoubleHalf></DoubleHalf>
-            <hr></hr>
-            <ChooseTeam></ChooseTeam>
-            <hr></hr>
-            <ColoredBox></ColoredBox>
-            <hr></hr>
-            <ShoveBox></ShoveBox>
-            <hr></hr>
-            <Counter></Counter>
-            <hr />
-            <RevealAnswer></RevealAnswer>
-            <hr />
-            <StartAttempt></StartAttempt>
-            <hr />
-            <TwoDice></TwoDice>
-            <hr />
-            <ChangeType></ChangeType>
-            <hr />
-            <CycleHoliday></CycleHoliday>
+            {showQuizzer ? <Quizzer /> : <ShowHideTasks />}
         </div>
     );
 }

@@ -18,7 +18,8 @@ export function makeBlankQuestion(
         expected: "",
         options: [],
         points: 1,
-        published: false
+        published: false,
+        submission: ""
     };
 }
 
