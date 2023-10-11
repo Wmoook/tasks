@@ -5,9 +5,505 @@
 Browserslist: caniuse-lite is outdated. Please run:
   npx browserslist@latest --update-db
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
-PASS src/nested.test.ts
+FAIL src/nested.test.ts
+  ● Testing the Question[] functions › Testing the addNewQuestion function
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+    @@ -5,8 +5,9 @@
+          "id": 142,
+          "name": "A new question",
+          "options": Array [],
+          "points": 1,
+          "published": false,
+    +     "submission": "",
+          "type": "short_answer_question",
+        },
+      ]
+
+      648 |         expect(
+      649 |             addNewQuestion([], 142, "A new question", "short_answer_question")
+    > 650 |         ).toEqual([NEW_BLANK_QUESTION]);
+          |           ^
+      651 |         expect(
+      652 |             addNewQuestion(
+      653 |                 BLANK_QUESTIONS,
+
+      at Object.<anonymous> (src/nested.test.ts:650:11)
+
 PASS src/arrays.test.ts
-PASS src/objects.test.ts
+FAIL src/objects.test.ts
+  ● Testing the object functions › Testing the makeBlankQuestion function
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+    @@ -4,7 +4,8 @@
+        "id": 1,
+        "name": "Question 1",
+        "options": Array [],
+        "points": 1,
+        "published": false,
+    +   "submission": "",
+        "type": "multiple_choice_question",
+      }
+
+      52 |         expect(
+      53 |             makeBlankQuestion(1, "Question 1", "multiple_choice_question")
+    > 54 |         ).toEqual(BLANK_QUESTIONS[0]);
+         |           ^
+      55 |         expect(
+      56 |             makeBlankQuestion(47, "My New Question", "multiple_choice_question")
+      57 |         ).toEqual(BLANK_QUESTIONS[1]);
+
+      at Object.<anonymous> (src/objects.test.ts:54:11)
+
+FAIL src/quizzer/Quizzer.test.tsx
+  ● Console
+
+    console.error
+      Warning: Encountered two children with the same key, `2|5`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+          at div
+          at div
+          at QuizEdit (/home/runner/work/tasks/tasks/src/quizzer/QuizEdit.tsx:18:5)
+          at div
+          at QuizView (/home/runner/work/tasks/tasks/src/quizzer/QuizView.tsx:16:5)
+          at div
+          at QuizList (/home/runner/work/tasks/tasks/src/quizzer/QuizList.tsx:18:5)
+          at div
+          at Quizzer (/home/runner/work/tasks/tasks/src/quizzer/Quizzer.tsx:42:35)
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:67:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:43:5)
+      at warnOnInvalidKey (node_modules/react-dom/cjs/react-dom.development.js:13620:11)
+      at reconcileChildrenArray (node_modules/react-dom/cjs/react-dom.development.js:13651:21)
+      at reconcileChildFibers (node_modules/react-dom/cjs/react-dom.development.js:14125:14)
+      at reconcileChildren (node_modules/react-dom/cjs/react-dom.development.js:16997:28)
+      at updateHostComponent (node_modules/react-dom/cjs/react-dom.development.js:17632:3)
+      at beginWork (node_modules/react-dom/cjs/react-dom.development.js:19080:14)
+
+  ● Quizzer Tests › Users can add a new quiz
+
+    expect(received).toBeInTheDocument()
+
+    received value must be an HTMLElement or an SVGElement.
+    Received has value: null
+
+      32 |         const saveButton = screen.getByText("Save Changes");
+      33 |         saveButton.click();
+    > 34 |         expect(screen.queryByText("Example Quiz")).toBeInTheDocument();
+         |                                                    ^
+      35 |     });
+      36 |
+      37 |     test("Users can see a list of quizzes, including the quizzes title, description, and how many questions it has", () => {
+
+      at __EXTERNAL_MATCHER_TRAP__ (node_modules/expect/build/index.js:386:30)
+      at Object.toBeInTheDocument (node_modules/expect/build/index.js:387:15)
+      at Object.<anonymous> (src/quizzer/Quizzer.test.tsx:34:52)
+
+  ● Quizzer Tests › Users can filter the questions in a list so that only published questions are shown
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="Quiz Published"]
+
+    Ignored nodes: comments, <script />, <style />
+    [36m<body[39m
+      [33mclass[39m=[32m""[39m
+      [33mstyle[39m=[32m"padding-right: 1024px;"[39m
+    [36m>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"quizzer"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"quiz_list"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"quiz_card"[39m
+            [36m>[39m
+              [36m<div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"edit_header"[39m
+                [36m>[39m
+                  [36m<div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"title_published_flex"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_area"[39m
+                      [36m>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"form-label"[39m
+                          [33mfor[39m=[32m"formEditQuizId"[39m
+                        [36m>[39m
+                          [0mTitle: [0m
+                        [36m</label>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m"form-control"[39m
+                          [33mid[39m=[32m"formEditQuizId"[39m
+                          [33mvalue[39m=[32m"Simple_Questions"[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"published_check form-check"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mchecked[39m=[32m""[39m
+                          [33mclass[39m=[32m"form-check-input"[39m
+                          [33mid[39m=[32m"is-published_check"[39m
+                          [33mtype[39m=[32m"checkbox"[39m
+                        [36m/>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"form-check-label"[39m
+                          [33mfor[39m=[32m"is-published_check"[39m
+                          [33mtitle[39m=[32m""[39m
+                        [36m>[39m
+                          [0mQuiz Published[0m
+                        [36m</label>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<label[39m
+                      [33mclass[39m=[32m"form-label"[39m
+                      [33mfor[39m=[32m"formEditQuizId"[39m
+                    [36m>[39m
+                      [0mDescription: [0m
+                    [36m</label>[39m
+                    [36m<textarea[39m
+                      [33mclass[39m=[32m"form-control"[39m
+                      [33mid[39m=[32m"formEditQuizId"[39m
+                      [33mrows[39m=[32m"3"[39m
+                    [36m>[39m
+                      [0mThis quiz is full of simple questions and is published[0m
+                    [36m</textarea>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+                [36m<div>[39m
+                  [36m<hr />[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"edit_question"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"edit_title_row"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_box"[39m
+                      [36m>[39m
+                        [36m<h4>[39m
+                          [0m1[0m
+                          [0m. [0m
+                        [36m</h4>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"title_input"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"form-control"[39m
+                            [33mdata-testid[39m=[32m"edit_question_title"[39m
+                            [33mid[39m=[32m"editTitleFormId"[39m
+                            [33mvalue[39m=[32m"What is 2+2?"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_box"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"points_input"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"form-control"[39m
+                            [33mid[39m=[32m"editPointsFormId"[39m
+                            [33mtype[39m=[32m"number"[39m
+                            [33mvalue[39m=[32m"1"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                        [36m<h4>[39m
+                          [0mpt[0m
+                          [0m[0m
+                        [36m</h4>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"center_section"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_answer_box"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"type_form"[39m
+                        [36m>[39m
+                          [36m<div>[39m
+                            [36m<label[39m
+                              [33mclass[39m=[32m"form-label"[39m
+                              [33mfor[39m=[32m"questionTypeFormId"[39m
+                            [36m>[39m
+                              [0mType: [0m
+                            [36m</label>[39m
+                            [36m<select[39m
+                              [33mclass[39m=[32m"type_dropdown form-select"[39m
+                              [33mid[39m=[32m"questionTypeFormId"[39m
+                            [36m>[39m
+                              [36m<option[39m
+                                [33mdata-testid[39m=[32m"question_type_dropdown_0"[39m
+                                [33mvalue[39m=[32m"multiple_choice_question"[39m
+                              [36m>[39m
+                                [0mMultiple Choice[0m
+                              [36m</option>[39m
+                              [36m<option[39m
+                                [33mdata-testid[39m=[32m"question_type_dropdown_0"[39m
+                                [33mvalue[39m=[32m"short_answer_question"[39m
+                              [36m>[39m
+                                [0mShort Answer[0m
+                              [36m</option>[39m
+                            [36m</select>[39m
+                          [36m</div>[39m
+                        [36m</div>[39m
+                        [36m<div>[39m
+                          [36m<div>[39m
+                            [36m<label[39m
+                              [33mclass[39m=[32m"form-label"[39m
+                              [33mfor[39m=[32m"formEditShortExpectedBox"[39m
+                            [36m>[39m
+                              [0mAnswer:[0m
+                            [36m</label>[39m
+                            [36m<input[39m
+                              [33mclass[...
+
+      145 |         editButton.click();
+      146 |
+    > 147 |         const quizPublished = screen.getByTestId("Quiz Published");
+          |                                      ^
+      148 |         quizPublished.click();
+      149 |         expect(quizPublished).not.toBeChecked();
+      150 |
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:38:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+      at getByTestId (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+      at Object.<anonymous> (src/quizzer/Quizzer.test.tsx:147:38)
+
+  ● Quizzer Tests › Users can add a new quiz question
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="Quiz Published"]
+
+    Ignored nodes: comments, <script />, <style />
+    [36m<body[39m
+      [33mclass[39m=[32m""[39m
+      [33mstyle[39m=[32m"padding-right: 1024px;"[39m
+    [36m>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"quizzer"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"quiz_list"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"quiz_card"[39m
+            [36m>[39m
+              [36m<div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"edit_header"[39m
+                [36m>[39m
+                  [36m<div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"title_published_flex"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_area"[39m
+                      [36m>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"form-label"[39m
+                          [33mfor[39m=[32m"formEditQuizId"[39m
+                        [36m>[39m
+                          [0mTitle: [0m
+                        [36m</label>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m"form-control"[39m
+                          [33mid[39m=[32m"formEditQuizId"[39m
+                          [33mvalue[39m=[32m"Simple_Questions"[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"published_check form-check"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mchecked[39m=[32m""[39m
+                          [33mclass[39m=[32m"form-check-input"[39m
+                          [33mid[39m=[32m"is-published_check"[39m
+                          [33mtype[39m=[32m"checkbox"[39m
+                        [36m/>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"form-check-label"[39m
+                          [33mfor[39m=[32m"is-published_check"[39m
+                          [33mtitle[39m=[32m""[39m
+                        [36m>[39m
+                          [0mQuiz Published[0m
+                        [36m</label>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<label[39m
+                      [33mclass[39m=[32m"form-label"[39m
+                      [33mfor[39m=[32m"formEditQuizId"[39m
+                    [36m>[39m
+                      [0mDescription: [0m
+                    [36m</label>[39m
+                    [36m<textarea[39m
+                      [33mclass[39m=[32m"form-control"[39m
+                      [33mid[39m=[32m"formEditQuizId"[39m
+                      [33mrows[39m=[32m"3"[39m
+                    [36m>[39m
+                      [0mThis quiz is full of simple questions and is published[0m
+                    [36m</textarea>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+                [36m<div>[39m
+                  [36m<hr />[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"edit_question"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"edit_title_row"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_box"[39m
+                      [36m>[39m
+                        [36m<h4>[39m
+                          [0m1[0m
+                          [0m. [0m
+                        [36m</h4>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"title_input"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"form-control"[39m
+                            [33mdata-testid[39m=[32m"edit_question_title"[39m
+                            [33mid[39m=[32m"editTitleFormId"[39m
+                            [33mvalue[39m=[32m"What is 2+2?"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_box"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"points_input"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"form-control"[39m
+                            [33mid[39m=[32m"editPointsFormId"[39m
+                            [33mtype[39m=[32m"number"[39m
+                            [33mvalue[39m=[32m"1"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                        [36m<h4>[39m
+                          [0mpt[0m
+                          [0m[0m
+                        [36m</h4>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"center_section"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_answer_box"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"type_form"[39m
+                        [36m>[39m
+                          [36m<div>[39m
+                            [36m<label[39m
+                              [33mclass[39m=[32m"form-label"[39m
+                              [33mfor[39m=[32m"questionTypeFormId"[39m
+                            [36m>[39m
+                              [0mType: [0m
+                            [36m</label>[39m
+                            [36m<select[39m
+                              [33mclass[39m=[32m"type_dropdown form-select"[39m
+                              [33mid[39m=[32m"questionTypeFormId"[39m
+                            [36m>[39m
+                              [36m<option[39m
+                                [33mdata-testid[39m=[32m"question_type_dropdown_0"[39m
+                                [33mvalue[39m=[32m"multiple_choice_question"[39m
+                              [36m>[39m
+                                [0mMultiple Choice[0m
+                              [36m</option>[39m
+                              [36m<option[39m
+                                [33mdata-testid[39m=[32m"question_type_dropdown_0"[39m
+                                [33mvalue[39m=[32m"short_answer_question"[39m
+                              [36m>[39m
+                                [0mShort Answer[0m
+                              [36m</option>[39m
+                            [36m</select>[39m
+                          [36m</div>[39m
+                        [36m</div>[39m
+                        [36m<div>[39m
+                          [36m<div>[39m
+                            [36m<label[39m
+                              [33mclass[39m=[32m"form-label"[39m
+                              [33mfor[39m=[32m"formEditShortExpectedBox"[39m
+                            [36m>[39m
+                              [0mAnswer:[0m
+                            [36m</label>[39m
+                            [36m<input[39m
+                              [33mclass[...
+
+      188 |         addButton.click();
+      189 |
+    > 190 |         const quizPublished = screen.getByTestId("Quiz Published");
+          |                                      ^
+      191 |         quizPublished.click();
+      192 |         expect(quizPublished).not.toBeChecked();
+      193 |
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:38:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+      at getByTestId (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+      at Object.<anonymous> (src/quizzer/Quizzer.test.tsx:190:38)
+
+  ● Quizzer Tests › Users can reorder quiz questions
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      Which of these is a color?
+    Received:
+      2. What is the last letter of the English alphabet?
+
+      209 |         const intialOrder = screen.getAllByTestId("question_body");
+      210 |         expect(intialOrder[0]).toHaveTextContent("What is 2+2?");
+    > 211 |         expect(intialOrder[1]).toHaveTextContent("Which of these is a color?");
+          |                                ^
+      212 |
+      213 |         const editButton = screen.getByText("Edit");
+      214 |         editButton.click();
+
+      at Object.<anonymous> (src/quizzer/Quizzer.test.tsx:211:32)
+
+  ● Quizzer Tests › Quiz questions can be of AT LEAST two types: a short answer question or multiple choice question 
+
+    expect(received).toBeInTheDocument()
+
+    received value must be an HTMLElement or an SVGElement.
+    Received has value: undefined
+
+      249 |                 exact: false
+      250 |             })[0]
+    > 251 |         ).toBeInTheDocument();
+          |           ^
+      252 |     });
+      253 | });
+      254 |
+
+      at __EXTERNAL_MATCHER_TRAP__ (node_modules/expect/build/index.js:386:30)
+      at Object.toBeInTheDocument (node_modules/expect/build/index.js:387:15)
+      at Object.<anonymous> (src/quizzer/Quizzer.test.tsx:251:11)
+
 PASS src/components/StartAttempt.test.tsx
 PASS src/components/TwoDice.test.tsx
 PASS src/form-components/MultipleChoiceQuestion.test.tsx
@@ -25,41 +521,530 @@ PASS src/components/RevealAnswer.test.tsx
 PASS src/bad-components/ColoredBox.test.tsx
 PASS src/bad-components/ShoveBox.test.tsx
 PASS src/App.test.tsx
------------------------------|---------|----------|---------|---------|-------------------
-File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
------------------------------|---------|----------|---------|---------|-------------------
-All files                    |    98.5 |    94.38 |   99.23 |   98.74 |                   
- src                         |   98.55 |    96.36 |     100 |   99.14 |                   
-  App.tsx                    |     100 |      100 |     100 |     100 |                   
-  arrays.ts                  |     100 |      100 |     100 |     100 |                   
-  functions.ts               |     100 |      100 |     100 |     100 |                   
-  nested.ts                  |   98.14 |    94.73 |     100 |     100 | 244               
-  objects.ts                 |   94.73 |    83.33 |     100 |   94.73 | 51                
- src/bad-components          |     100 |       50 |     100 |     100 |                   
-  ChooseTeam.tsx             |     100 |       50 |     100 |     100 | 18                
-  ColoredBox.tsx             |     100 |      100 |     100 |     100 |                   
-  DoubleHalf.tsx             |     100 |      100 |     100 |     100 |                   
-  ShoveBox.tsx               |     100 |      100 |     100 |     100 |                   
- src/components              |   96.61 |    94.44 |   95.83 |   96.42 |                   
-  ChangeType.tsx             |     100 |      100 |     100 |     100 |                   
-  Counter.tsx                |     100 |      100 |     100 |     100 |                   
-  CycleHoliday.tsx           |     100 |      100 |     100 |     100 |                   
-  RevealAnswer.tsx           |     100 |      100 |     100 |     100 |                   
-  StartAttempt.tsx           |     100 |    83.33 |     100 |     100 | 9                 
-  TwoDice.tsx                |   88.88 |      100 |      80 |   88.88 | 29-30             
- src/form-components         |     100 |    92.85 |     100 |     100 |                   
-  ChangeColor.tsx            |     100 |      100 |     100 |     100 |                   
-  CheckAnswer.tsx            |     100 |      100 |     100 |     100 |                   
-  EditMode.tsx               |     100 |      100 |     100 |     100 |                   
-  GiveAttempts.tsx           |     100 |       75 |     100 |     100 | 16                
-  MultipleChoiceQuestion.tsx |     100 |      100 |     100 |     100 |                   
- src/interfaces              |       0 |        0 |       0 |       0 |                   
-  answer.ts                  |       0 |        0 |       0 |       0 |                   
-  question.ts                |       0 |        0 |       0 |       0 |                   
------------------------------|---------|----------|---------|---------|-------------------
+-----------------------------|---------|----------|---------|---------|---------------------------------------------------
+File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                 
+-----------------------------|---------|----------|---------|---------|---------------------------------------------------
+All files                    |   88.88 |    84.81 |   86.51 |   88.59 |                                                   
+ src                         |    95.8 |    90.16 |   95.65 |    95.9 |                                                   
+  App.tsx                    |   66.66 |       50 |      50 |   66.66 | 16                                                
+  ShowHideTasks.tsx          |       0 |        0 |       0 |       0 | 20-60                                             
+  arrays.ts                  |     100 |      100 |     100 |     100 |                                                   
+  functions.ts               |     100 |      100 |     100 |     100 |                                                   
+  nested.ts                  |   98.14 |    94.73 |     100 |     100 | 244                                               
+  objects.ts                 |   94.73 |    83.33 |     100 |   94.73 | 52                                                
+ src/bad-components          |     100 |       50 |     100 |     100 |                                                   
+  ChooseTeam.tsx             |     100 |       50 |     100 |     100 | 18                                                
+  ColoredBox.tsx             |     100 |      100 |     100 |     100 |                                                   
+  DoubleHalf.tsx             |     100 |      100 |     100 |     100 |                                                   
+  ShoveBox.tsx               |     100 |      100 |     100 |     100 |                                                   
+ src/components              |   96.61 |    94.44 |   95.83 |   96.42 |                                                   
+  ChangeType.tsx             |     100 |      100 |     100 |     100 |                                                   
+  Counter.tsx                |     100 |      100 |     100 |     100 |                                                   
+  CycleHoliday.tsx           |     100 |      100 |     100 |     100 |                                                   
+  RevealAnswer.tsx           |     100 |      100 |     100 |     100 |                                                   
+  StartAttempt.tsx           |     100 |    83.33 |     100 |     100 | 9                                                 
+  TwoDice.tsx                |   88.88 |      100 |      80 |   88.88 | 29-30                                             
+ src/form-components         |     100 |    92.85 |     100 |     100 |                                                   
+  ChangeColor.tsx            |     100 |      100 |     100 |     100 |                                                   
+  CheckAnswer.tsx            |     100 |      100 |     100 |     100 |                                                   
+  EditMode.tsx               |     100 |      100 |     100 |     100 |                                                   
+  GiveAttempts.tsx           |     100 |       75 |     100 |     100 | 16                                                
+  MultipleChoiceQuestion.tsx |     100 |      100 |     100 |     100 |                                                   
+ src/interfaces              |       0 |        0 |       0 |       0 |                                                   
+  answer.ts                  |       0 |        0 |       0 |       0 |                                                   
+  question.ts                |       0 |        0 |       0 |       0 |                                                   
+  quiz.ts                    |       0 |        0 |       0 |       0 |                                                   
+ src/quizzer                 |   76.27 |    76.19 |   69.51 |   76.19 |                                                   
+  AddQuizModal.tsx           |   66.66 |      100 |      40 |   66.66 | 25,40-57                                          
+  QuestionEdit.tsx           |   47.36 |     62.5 |    37.5 |   47.36 | 32-33,43-45,64-68,75-82,86-91,111-184,218-245,270 
+  QuizCard.tsx               |     100 |       80 |     100 |     100 | 31                                                
+  QuizEdit.tsx               |   59.25 |      100 |   53.84 |   59.25 | 37-40,44-48,66-93                                 
+  QuizExpanded.tsx           |      90 |     62.5 |   78.57 |   92.85 | 27,80                                             
+  QuizList.tsx               |     100 |      100 |     100 |     100 |                                                   
+  QuizQuestion.tsx           |     100 |    85.71 |     100 |     100 | 26-33                                             
+  QuizView.tsx               |     100 |      100 |     100 |     100 |                                                   
+  Quizzer.tsx                |    90.9 |       75 |   82.35 |   92.85 | 69,84                                             
+-----------------------------|---------|----------|---------|---------|---------------------------------------------------
 
-Test Suites: 20 passed, 20 total
-Tests:       134 passed, 134 total
+Summary of all failing tests
+FAIL src/nested.test.ts
+  ● Testing the Question[] functions › Testing the addNewQuestion function
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+    @@ -5,8 +5,9 @@
+          "id": 142,
+          "name": "A new question",
+          "options": Array [],
+          "points": 1,
+          "published": false,
+    +     "submission": "",
+          "type": "short_answer_question",
+        },
+      ]
+
+      648 |         expect(
+      649 |             addNewQuestion([], 142, "A new question", "short_answer_question")
+    > 650 |         ).toEqual([NEW_BLANK_QUESTION]);
+          |           ^
+      651 |         expect(
+      652 |             addNewQuestion(
+      653 |                 BLANK_QUESTIONS,
+
+      at Object.<anonymous> (src/nested.test.ts:650:11)
+
+FAIL src/objects.test.ts
+  ● Testing the object functions › Testing the makeBlankQuestion function
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+    @@ -4,7 +4,8 @@
+        "id": 1,
+        "name": "Question 1",
+        "options": Array [],
+        "points": 1,
+        "published": false,
+    +   "submission": "",
+        "type": "multiple_choice_question",
+      }
+
+      52 |         expect(
+      53 |             makeBlankQuestion(1, "Question 1", "multiple_choice_question")
+    > 54 |         ).toEqual(BLANK_QUESTIONS[0]);
+         |           ^
+      55 |         expect(
+      56 |             makeBlankQuestion(47, "My New Question", "multiple_choice_question")
+      57 |         ).toEqual(BLANK_QUESTIONS[1]);
+
+      at Object.<anonymous> (src/objects.test.ts:54:11)
+
+FAIL src/quizzer/Quizzer.test.tsx
+  ● Quizzer Tests › Users can add a new quiz
+
+    expect(received).toBeInTheDocument()
+
+    received value must be an HTMLElement or an SVGElement.
+    Received has value: null
+
+      32 |         const saveButton = screen.getByText("Save Changes");
+      33 |         saveButton.click();
+    > 34 |         expect(screen.queryByText("Example Quiz")).toBeInTheDocument();
+         |                                                    ^
+      35 |     });
+      36 |
+      37 |     test("Users can see a list of quizzes, including the quizzes title, description, and how many questions it has", () => {
+
+      at __EXTERNAL_MATCHER_TRAP__ (node_modules/expect/build/index.js:386:30)
+      at Object.toBeInTheDocument (node_modules/expect/build/index.js:387:15)
+      at Object.<anonymous> (src/quizzer/Quizzer.test.tsx:34:52)
+
+  ● Quizzer Tests › Users can filter the questions in a list so that only published questions are shown
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="Quiz Published"]
+
+    Ignored nodes: comments, <script />, <style />
+    [36m<body[39m
+      [33mclass[39m=[32m""[39m
+      [33mstyle[39m=[32m"padding-right: 1024px;"[39m
+    [36m>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"quizzer"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"quiz_list"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"quiz_card"[39m
+            [36m>[39m
+              [36m<div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"edit_header"[39m
+                [36m>[39m
+                  [36m<div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"title_published_flex"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_area"[39m
+                      [36m>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"form-label"[39m
+                          [33mfor[39m=[32m"formEditQuizId"[39m
+                        [36m>[39m
+                          [0mTitle: [0m
+                        [36m</label>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m"form-control"[39m
+                          [33mid[39m=[32m"formEditQuizId"[39m
+                          [33mvalue[39m=[32m"Simple_Questions"[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"published_check form-check"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mchecked[39m=[32m""[39m
+                          [33mclass[39m=[32m"form-check-input"[39m
+                          [33mid[39m=[32m"is-published_check"[39m
+                          [33mtype[39m=[32m"checkbox"[39m
+                        [36m/>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"form-check-label"[39m
+                          [33mfor[39m=[32m"is-published_check"[39m
+                          [33mtitle[39m=[32m""[39m
+                        [36m>[39m
+                          [0mQuiz Published[0m
+                        [36m</label>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<label[39m
+                      [33mclass[39m=[32m"form-label"[39m
+                      [33mfor[39m=[32m"formEditQuizId"[39m
+                    [36m>[39m
+                      [0mDescription: [0m
+                    [36m</label>[39m
+                    [36m<textarea[39m
+                      [33mclass[39m=[32m"form-control"[39m
+                      [33mid[39m=[32m"formEditQuizId"[39m
+                      [33mrows[39m=[32m"3"[39m
+                    [36m>[39m
+                      [0mThis quiz is full of simple questions and is published[0m
+                    [36m</textarea>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+                [36m<div>[39m
+                  [36m<hr />[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"edit_question"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"edit_title_row"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_box"[39m
+                      [36m>[39m
+                        [36m<h4>[39m
+                          [0m1[0m
+                          [0m. [0m
+                        [36m</h4>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"title_input"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"form-control"[39m
+                            [33mdata-testid[39m=[32m"edit_question_title"[39m
+                            [33mid[39m=[32m"editTitleFormId"[39m
+                            [33mvalue[39m=[32m"What is 2+2?"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_box"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"points_input"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"form-control"[39m
+                            [33mid[39m=[32m"editPointsFormId"[39m
+                            [33mtype[39m=[32m"number"[39m
+                            [33mvalue[39m=[32m"1"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                        [36m<h4>[39m
+                          [0mpt[0m
+                          [0m[0m
+                        [36m</h4>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"center_section"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_answer_box"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"type_form"[39m
+                        [36m>[39m
+                          [36m<div>[39m
+                            [36m<label[39m
+                              [33mclass[39m=[32m"form-label"[39m
+                              [33mfor[39m=[32m"questionTypeFormId"[39m
+                            [36m>[39m
+                              [0mType: [0m
+                            [36m</label>[39m
+                            [36m<select[39m
+                              [33mclass[39m=[32m"type_dropdown form-select"[39m
+                              [33mid[39m=[32m"questionTypeFormId"[39m
+                            [36m>[39m
+                              [36m<option[39m
+                                [33mdata-testid[39m=[32m"question_type_dropdown_0"[39m
+                                [33mvalue[39m=[32m"multiple_choice_question"[39m
+                              [36m>[39m
+                                [0mMultiple Choice[0m
+                              [36m</option>[39m
+                              [36m<option[39m
+                                [33mdata-testid[39m=[32m"question_type_dropdown_0"[39m
+                                [33mvalue[39m=[32m"short_answer_question"[39m
+                              [36m>[39m
+                                [0mShort Answer[0m
+                              [36m</option>[39m
+                            [36m</select>[39m
+                          [36m</div>[39m
+                        [36m</div>[39m
+                        [36m<div>[39m
+                          [36m<div>[39m
+                            [36m<label[39m
+                              [33mclass[39m=[32m"form-label"[39m
+                              [33mfor[39m=[32m"formEditShortExpectedBox"[39m
+                            [36m>[39m
+                              [0mAnswer:[0m
+                            [36m</label>[39m
+                            [36m<input[39m
+                              [33mclass[...
+
+      145 |         editButton.click();
+      146 |
+    > 147 |         const quizPublished = screen.getByTestId("Quiz Published");
+          |                                      ^
+      148 |         quizPublished.click();
+      149 |         expect(quizPublished).not.toBeChecked();
+      150 |
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:38:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+      at getByTestId (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+      at Object.<anonymous> (src/quizzer/Quizzer.test.tsx:147:38)
+
+  ● Quizzer Tests › Users can add a new quiz question
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="Quiz Published"]
+
+    Ignored nodes: comments, <script />, <style />
+    [36m<body[39m
+      [33mclass[39m=[32m""[39m
+      [33mstyle[39m=[32m"padding-right: 1024px;"[39m
+    [36m>[39m
+      [36m<div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"quizzer"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"quiz_list"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"quiz_card"[39m
+            [36m>[39m
+              [36m<div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"edit_header"[39m
+                [36m>[39m
+                  [36m<div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"title_published_flex"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_area"[39m
+                      [36m>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"form-label"[39m
+                          [33mfor[39m=[32m"formEditQuizId"[39m
+                        [36m>[39m
+                          [0mTitle: [0m
+                        [36m</label>[39m
+                        [36m<input[39m
+                          [33mclass[39m=[32m"form-control"[39m
+                          [33mid[39m=[32m"formEditQuizId"[39m
+                          [33mvalue[39m=[32m"Simple_Questions"[39m
+                        [36m/>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"published_check form-check"[39m
+                      [36m>[39m
+                        [36m<input[39m
+                          [33mchecked[39m=[32m""[39m
+                          [33mclass[39m=[32m"form-check-input"[39m
+                          [33mid[39m=[32m"is-published_check"[39m
+                          [33mtype[39m=[32m"checkbox"[39m
+                        [36m/>[39m
+                        [36m<label[39m
+                          [33mclass[39m=[32m"form-check-label"[39m
+                          [33mfor[39m=[32m"is-published_check"[39m
+                          [33mtitle[39m=[32m""[39m
+                        [36m>[39m
+                          [0mQuiz Published[0m
+                        [36m</label>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<label[39m
+                      [33mclass[39m=[32m"form-label"[39m
+                      [33mfor[39m=[32m"formEditQuizId"[39m
+                    [36m>[39m
+                      [0mDescription: [0m
+                    [36m</label>[39m
+                    [36m<textarea[39m
+                      [33mclass[39m=[32m"form-control"[39m
+                      [33mid[39m=[32m"formEditQuizId"[39m
+                      [33mrows[39m=[32m"3"[39m
+                    [36m>[39m
+                      [0mThis quiz is full of simple questions and is published[0m
+                    [36m</textarea>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+                [36m<div>[39m
+                  [36m<hr />[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"edit_question"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"edit_title_row"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_box"[39m
+                      [36m>[39m
+                        [36m<h4>[39m
+                          [0m1[0m
+                          [0m. [0m
+                        [36m</h4>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"title_input"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"form-control"[39m
+                            [33mdata-testid[39m=[32m"edit_question_title"[39m
+                            [33mid[39m=[32m"editTitleFormId"[39m
+                            [33mvalue[39m=[32m"What is 2+2?"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_title_box"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"points_input"[39m
+                        [36m>[39m
+                          [36m<input[39m
+                            [33mclass[39m=[32m"form-control"[39m
+                            [33mid[39m=[32m"editPointsFormId"[39m
+                            [33mtype[39m=[32m"number"[39m
+                            [33mvalue[39m=[32m"1"[39m
+                          [36m/>[39m
+                        [36m</div>[39m
+                        [36m<h4>[39m
+                          [0mpt[0m
+                          [0m[0m
+                        [36m</h4>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"center_section"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"edit_answer_box"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"type_form"[39m
+                        [36m>[39m
+                          [36m<div>[39m
+                            [36m<label[39m
+                              [33mclass[39m=[32m"form-label"[39m
+                              [33mfor[39m=[32m"questionTypeFormId"[39m
+                            [36m>[39m
+                              [0mType: [0m
+                            [36m</label>[39m
+                            [36m<select[39m
+                              [33mclass[39m=[32m"type_dropdown form-select"[39m
+                              [33mid[39m=[32m"questionTypeFormId"[39m
+                            [36m>[39m
+                              [36m<option[39m
+                                [33mdata-testid[39m=[32m"question_type_dropdown_0"[39m
+                                [33mvalue[39m=[32m"multiple_choice_question"[39m
+                              [36m>[39m
+                                [0mMultiple Choice[0m
+                              [36m</option>[39m
+                              [36m<option[39m
+                                [33mdata-testid[39m=[32m"question_type_dropdown_0"[39m
+                                [33mvalue[39m=[32m"short_answer_question"[39m
+                              [36m>[39m
+                                [0mShort Answer[0m
+                              [36m</option>[39m
+                            [36m</select>[39m
+                          [36m</div>[39m
+                        [36m</div>[39m
+                        [36m<div>[39m
+                          [36m<div>[39m
+                            [36m<label[39m
+                              [33mclass[39m=[32m"form-label"[39m
+                              [33mfor[39m=[32m"formEditShortExpectedBox"[39m
+                            [36m>[39m
+                              [0mAnswer:[0m
+                            [36m</label>[39m
+                            [36m<input[39m
+                              [33mclass[...
+
+      188 |         addButton.click();
+      189 |
+    > 190 |         const quizPublished = screen.getByTestId("Quiz Published");
+          |                                      ^
+      191 |         quizPublished.click();
+      192 |         expect(quizPublished).not.toBeChecked();
+      193 |
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:38:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+      at getByTestId (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+      at Object.<anonymous> (src/quizzer/Quizzer.test.tsx:190:38)
+
+  ● Quizzer Tests › Users can reorder quiz questions
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      Which of these is a color?
+    Received:
+      2. What is the last letter of the English alphabet?
+
+      209 |         const intialOrder = screen.getAllByTestId("question_body");
+      210 |         expect(intialOrder[0]).toHaveTextContent("What is 2+2?");
+    > 211 |         expect(intialOrder[1]).toHaveTextContent("Which of these is a color?");
+          |                                ^
+      212 |
+      213 |         const editButton = screen.getByText("Edit");
+      214 |         editButton.click();
+
+      at Object.<anonymous> (src/quizzer/Quizzer.test.tsx:211:32)
+
+  ● Quizzer Tests › Quiz questions can be of AT LEAST two types: a short answer question or multiple choice question 
+
+    expect(received).toBeInTheDocument()
+
+    received value must be an HTMLElement or an SVGElement.
+    Received has value: undefined
+
+      249 |                 exact: false
+      250 |             })[0]
+    > 251 |         ).toBeInTheDocument();
+          |           ^
+      252 |     });
+      253 | });
+      254 |
+
+      at __EXTERNAL_MATCHER_TRAP__ (node_modules/expect/build/index.js:386:30)
+      at Object.toBeInTheDocument (node_modules/expect/build/index.js:387:15)
+      at Object.<anonymous> (src/quizzer/Quizzer.test.tsx:251:11)
+
+
+Test Suites: 3 failed, 18 passed, 21 total
+Tests:       7 failed, 141 passed, 148 total
 Snapshots:   0 total
-Time:        11.814 s
+Time:        13.366 s
 Ran all test suites.
