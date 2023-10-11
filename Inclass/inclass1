@@ -1,0 +1,32 @@
+interface flavor {
+    candyType: string;
+    candyFlavor: string;
+}
+
+interface candy {
+    name: string;
+    bestCandy: boolean;
+    amount: number;
+    candyFlavor: flavor;
+    favoriteCandy: string[];
+}
+
+const reeses = {
+    name: "Reeses",
+    bestCandy: true,
+    amount: 2,
+    candyFlavor: { candyType: "chocolate", candyFlavor: "peanut butter" },
+    favoriteCandy: ["Me"]
+};
+
+const reesesKing = {
+    ...reeses,
+    candyFlavor: { ...reeses.candyFlavor }
+};
+
+reesesKing.candyFlavor = {
+    candyType: "chocolate",
+    candyFlavor: "peanut butter"
+};
+
+console.log(reeses.candyFlavor);
