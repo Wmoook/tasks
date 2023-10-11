@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Quiz } from "../interfaces/quiz";
 import { Question, QuestionType } from "../interfaces/question";
 import { Quizzer } from "./Quizzer";
@@ -170,9 +170,31 @@ describe("Quizzer Tests", () => {
         expect(screen.queryByText("Simple_Questions")).not.toBeInTheDocument();
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    test("Users can delete an existing quiz question", () => {});
+    test("Users can delete an existing quiz question", async () => {
+        const text = screen.getByText("Simple_Questions");
+        text.click();
 
+        const editButton = screen.getByText("Edit");
+        editButton.click();
+        const questionBody = screen.getByTestId("question_body");
+        const questionBodyText = questionBody.textContent;
+
+        if (questionBodyText) {
+            const deleteButton = screen.getByText("Delete Question");
+            deleteButton.click();
+            const saveButton = screen.getByText("Save");
+            saveButton.click();
+            await waitFor(() => {
+                expect(
+                    screen.queryByText(questionBodyText)
+                ).not.toBeInTheDocument();
+            });
+        } else {
+            throw new Error(
+                "Could not find the text content of the question body."
+            );
+        }
+    });
     test("Users can add a new quiz question", () => {
         const text = screen.getByText("Simple_Questions");
         text.click();
@@ -199,8 +221,26 @@ describe("Quizzer Tests", () => {
         ).toBeInTheDocument();
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    test("Users can edit the questions and fields of a quiz", () => {});
+    test("Users can edit the questions and fields of a quiz", async () => {
+        const text = screen.getByText("Simple_Questions");
+        text.click();
+        const editButton = screen.getByText("Edit");
+        editButton.click();
+        const titleInput = screen.getByLabelText("Title:");
+        userEvent.clear(titleInput);
+        userEvent.type(titleInput, "Updated Simple_Questions");
+        const questionBody = screen.getByTestId("question_body");
+        userEvent.clear(questionBody);
+        userEvent.type(questionBody, "What is 3+3?");
+        const saveButton = screen.getByText("Save");
+        saveButton.click();
+        await waitFor(() => {
+            expect(
+                screen.getByText("Updated Simple_Questions")
+            ).toBeInTheDocument();
+            expect(screen.getByText("What is 3+3?")).toBeInTheDocument();
+        });
+    });
 
     test("Users can reorder quiz questions", () => {
         const text = screen.getByText("Simple_Questions");

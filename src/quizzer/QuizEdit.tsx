@@ -124,11 +124,11 @@ export const QuizEdit: React.FC<QuizEditProps> = ({
                                 {
                                     id: editedQuiz.questionList.length + 1,
                                     name: "",
-                                    body: "",
+                                    body: "Example Question",
                                     type: "short_answer_question",
                                     options: [],
                                     submission: "",
-                                    expected: "",
+                                    expected: "Example Answer",
                                     points: 1,
                                     published: false
                                 }
