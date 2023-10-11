@@ -30,33 +30,36 @@ export const QuizList: React.FC<QuizListProps> = ({
         setDisplayId(null);
     };
 
-    const selectedQuiz = quizzes.find((quiz) => quiz.id === displayId) || null;
+    const selectedQuiz = quizzes.find((quiz) => quiz.id === displayId);
+
+    const renderQuizCards = () => (
+        <>
+            {quizzes.map((quiz) => (
+                <QuizCard
+                    key={quiz.id}
+                    quiz={quiz}
+                    handleClick={handleQuizView}
+                />
+            ))}
+            <Button className="add_btn" onClick={showModal}>
+                Add New Quiz
+            </Button>
+        </>
+    );
+
+    const renderSelectedQuiz = () =>
+        selectedQuiz && (
+            <QuizView
+                quiz={selectedQuiz}
+                editQuiz={editQuiz}
+                deleteQuiz={deleteQuiz}
+                resetView={resetQuizView}
+            />
+        );
 
     return (
         <div className="quiz_list">
-            {!displayId ? (
-                <>
-                    {quizzes.map((quiz) => (
-                        <QuizCard
-                            key={quiz.id}
-                            quiz={quiz}
-                            handleClick={handleQuizView}
-                        />
-                    ))}
-                    <Button className="add_btn" onClick={showModal}>
-                        Add New Quiz
-                    </Button>
-                </>
-            ) : (
-                selectedQuiz && (
-                    <QuizView
-                        quiz={selectedQuiz}
-                        editQuiz={editQuiz}
-                        deleteQuiz={deleteQuiz}
-                        resetView={resetQuizView}
-                    />
-                )
-            )}
+            {displayId ? renderSelectedQuiz() : renderQuizCards()}
         </div>
     );
 };

@@ -11,25 +11,32 @@ type PartialQuiz = Omit<Quiz, "questionList"> & {
     questionList: PartialQuestion[];
 };
 
-const isQuestionType = (type: any): type is QuestionType => {
+const isValidQuestionType = (type: string): type is QuestionType => {
     return ["multiple_choice_question", "short_answer_question"].includes(type);
 };
-const QUIZZES = (sample as PartialQuiz[]).map(
-    (quiz: PartialQuiz): Quiz => ({
+
+const transformToQuiz = (quiz: PartialQuiz): Quiz => {
+    const transformedQuestions = quiz.questionList.map((q) => {
+        const type = isValidQuestionType(q.type)
+            ? q.type
+            : "short_answer_question";
+
+        return {
+            ...q,
+            name: q.name || "",
+            submission: "",
+            type
+        };
+    });
+
+    return {
         ...quiz,
-        questionList: quiz.questionList.map((q: PartialQuestion): Question => {
-            const type = isQuestionType(q.type)
-                ? q.type
-                : "short_answer_question";
-            return {
-                ...q,
-                name: q.name || "", // If 'name' is optional in PartialQuestion, provide a default value.
-                submission: "", // Add missing submission field
-                type: type
-            };
-        })
-    })
-);
+        questionList: transformedQuestions
+    };
+};
+
+const quizzesSample: PartialQuiz[] = sample as PartialQuiz[];
+const QUIZZES: Quiz[] = quizzesSample.map(transformToQuiz);
 
 export const Quizzer = () => {
     const [quizzes, setQuizzes] = useState<Quiz[]>(QUIZZES);
@@ -37,40 +44,40 @@ export const Quizzer = () => {
     const [showOnlyPublished, setShowOnlyPublished] = useState(false);
     const [displayId, setDisplayId] = useState<null | number>(null);
 
-    function editQuiz(qId: number, newQuiz: Quiz) {
-        setQuizzes(
-            quizzes.map((q: Quiz): Quiz => (q.id === qId ? newQuiz : q))
+    const editQuiz = (qId: number, newQuiz: Quiz) => {
+        setQuizzes((prevQuizzes) =>
+            prevQuizzes.map((q) => (q.id === qId ? newQuiz : q))
         );
-    }
+    };
 
-    function addQuiz(title: string, body: string) {
+    const addQuiz = (title: string, body: string) => {
         const newQuiz: Quiz = {
             id: quizzes.length + 1,
-            title: title,
-            body: body,
+            title,
+            body,
             questionList: [],
             published: false
         };
-        setQuizzes([...quizzes, newQuiz]);
-    }
+        setQuizzes((prevQuizzes) => [...prevQuizzes, newQuiz]);
+    };
 
-    function deleteQuiz(qId: number) {
-        setQuizzes(quizzes.filter((q: Quiz): boolean => qId !== q.id));
-    }
+    const deleteQuiz = (qId: number) => {
+        setQuizzes((prevQuizzes) => prevQuizzes.filter((q) => qId !== q.id));
+    };
 
-    const handleShowModal = () => setShowAddModal(true);
-    const handleCloseModal = () => setShowAddModal(false);
+    const toggleShowOnlyPublished = () => {
+        setShowOnlyPublished((prev) => !prev);
+    };
 
     return (
         <div className="quizzer">
             {displayId === null && (
-                <button onClick={() => setShowOnlyPublished((prev) => !prev)}>
+                <button onClick={toggleShowOnlyPublished}>
                     {showOnlyPublished
                         ? "Show All Quizzes"
                         : "Show Only Published Quizzes"}
                 </button>
             )}
-
             <QuizList
                 quizzes={
                     showOnlyPublished
@@ -79,13 +86,13 @@ export const Quizzer = () => {
                 }
                 editQuiz={editQuiz}
                 deleteQuiz={deleteQuiz}
-                showModal={handleShowModal}
+                showModal={() => setShowAddModal(true)}
                 displayId={displayId}
                 setDisplayId={setDisplayId}
             />
             <AddQuizModal
                 show={showAddModal}
-                handleClose={handleCloseModal}
+                handleClose={() => setShowAddModal(false)}
                 addQuiz={addQuiz}
             />
             <hr />
