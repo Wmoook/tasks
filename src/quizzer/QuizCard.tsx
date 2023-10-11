@@ -16,7 +16,12 @@ export const QuizCard = ({
     );
 
     return (
-        <div className="quiz_view_card">
+        <div
+            className="quiz_view_card"
+            onClick={() => {
+                handleClick(quiz.id);
+            }}
+        >
             <div className="d-flex align-items-baseline">
                 <h3
                     className="title"
